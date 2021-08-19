@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+	<div class="album py-5 bg-light">
+    	<div class="container">
+
+      		<div class="row">
+      			<div class="col">
+      				<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">Nombre</th>
+					      <th scope="col">Apellido</th>
+					      <th scope="col">Direccion</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for a in usuarios  %}
+						    <tr>
+						      <td>{{a.nombre}}</td>
+						      <td>{{a.apellido|default:'-'}}</td>
+						      <td>{{a.domicilio}}</td>
+						    </tr>
+					    {% endfor %}
+					  </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock contenido %}
