@@ -32,7 +32,9 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'apps.usuarios'
+    'apps.usuarios',
+    'apps.niveles',
+    'apps.preguntas'
 ]
 
 THIRD_APPS = ["bootstrap5"
