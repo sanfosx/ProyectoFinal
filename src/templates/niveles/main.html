@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+
+{% block contenido %}
+
+En esta página selecciona el nivel
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+	{% for obj in object_list %}
+		<div class="col">
+		    <div class="card">
+		      <img src="..." class="card-img-top" alt="...">
+		      <div class="card-body">
+		        <h5 class="card-title">{{obj.nombre}}</h5>
+		        <p class="card-text">Descripción: {{obj.descripcion}}</p>
+		        <p class="card-text">Cantidad de Preguntas: {{obj.cantidad_de_preguntas}}</p>
+		        <p class="card-text">Puntaje mínimo para aprobar: {{obj.puntaje_minimo_para_aprobar}}</p>
+		        <p class="card-text">Dificultad: {{obj.dificultad}}</p>
+		        <a href="/niveles/{{obj.pk}}" class="btn btn-primary">Comenzar</a> 
+		        <!-- está bien esa forma de definir el href??? -->
+		      </div>
+		    </div>
+	  	</div>
+	{% endfor %}
+</div>
+
+{% endblock contenido %}
+
+<!-- Este archivo html pasaría a ser home.html, confirmar con Santiango según modelo de usuario -->

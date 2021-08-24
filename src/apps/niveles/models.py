@@ -21,7 +21,7 @@ class Nivel(models.Model):
 		return f"{self.nombre} - {self.descripcion}"
 
 	def get_preguntas(self):
-		return self.pregunta_set.all()
+		return self.pregunta_set.all()[:self.cantidad_de_preguntas] #limitar la cantidad de preguntas que trae la función
 
 	class Meta:
 		verbose_name_plural = 'Niveles'

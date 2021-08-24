@@ -17,5 +17,6 @@ urlpatterns = [
     
     path('usuarios/', include('apps.usuarios.urls')),
 
-
+    path('niveles/', include('apps.niveles.urls', namespace='niveles')) 
+    # namespace tiene que ser el app_name de apps/niveles/urls.py
 ]
