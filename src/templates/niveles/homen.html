@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+
+
+{% block contenido %}
+
+
+	
+	<div class="row g-0">
+	    <div class="col-sm-6 col-md-8">
+	    	<div  class="row row-cols-1 row-cols-md-2 g-5">
+		    	{% for n in niveles %}	
+
+				<div class="card border-success mb-3" style="width: 20rem;">
+
+					 <h5 class="card-header" style="background-color:coral;";> <p class="text-dark" >{{n.nombre}}</p></h5>
+					  <div class="card-body">
+					   
+					    <p class="card-text" ><p class="text-dark">{{n.descrip }}.</p></p>
+
+					    <a href="{% url 'niveles:listar' n.pk %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
+					  </div>
+				</div>
+				
+				{% empty %}
+				<tr>
+					<td>No se encontraron resultados</td>
+				</tr>
+				{% endfor %}
+    		</div>
+    	</div>
+
+	    <div class="col-6 col-md-4">
+	     <div class="card border-danger mb-3" style="width:100%;">
+					<div class="card-header"><h3 class="text-dark">Tabla de Resultados Compartidos</h3></div>	
+					  <div class="card-body">
+					   
+
+					  </div>
+					  <br><br><br>
+				</div>
+	    </div>
+ 	</div>
+
+
+{% endblock contenido %}
+
+
+
+

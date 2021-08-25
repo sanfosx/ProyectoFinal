@@ -1,13 +1,24 @@
-from django.shortcuts import render
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from .forms import SignUpForm
 
-from .models import Usuario
+def signup(request):
 
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
 
-def listar_usuarios(request):
-	template_name="usuario/listar.html"
-	lista_de_usuarios = Usuario.objects.all()
-	
-	ctx={
-		'usuarios': lista_de_usuarios
-	}
-	return render(request,template_name, ctx )
+        if form.is_valid():
+            form.save()
+            """username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)"""
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    return render(request, 'usuarios/signup.html', {'form': form})
+
+def login(request):
+
+	return render(request, 'ususarios/login.html')

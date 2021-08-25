@@ -5,42 +5,42 @@
 <style>
 
 form { margin: 0 auto; 
-		width:250px;
+	width:250px;
 }
 
 </style>
-        
-        	<div>
-	        	 <h1>Iniciar sesion</h1>
 
-		        	<form method="POST">{% csrf_token %}
-							 
-								   <div class="row g-3 align-items-center">
-									  <div>
-									     <label for="exampleInputEmail1" class="col-form-label">Usuario</label>
-									 	<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre de Usuario" id="username" name="username">
-									  </div>
-									  
-									</div>
+<div>
+	<h1>Iniciar sesion</h1>
 
-								 	<div class="row g-3 align-items-center">
-									  <div >
-									    <label for="Password" class="col-form-label">Password</label>
-									 
-									  	<input type="password" class="form-control" id="password" name="password" placeholder="Ingrese contraseña">
-									  
-									  </div>
-									  
-									</div>
-
-								<div>
-									<br>	
-								  		<button type="submit" class="btn btn-outline-warning">Iniciar Sesion</button>
-								  			
-								</div>
-						</form>
-			</div>	
+	<form method="POST">{% csrf_token %}
 		
+		<div class="row g-3 align-items-center">
+			<div>
+				<label for="exampleInputEmail1" class="col-form-label">Usuario</label>
+				<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre de Usuario" id="username" name="username">
+			</div>
+			
+		</div>
+
+		<div class="row g-3 align-items-center">
+			<div >
+				<label for="Password" class="col-form-label">Password</label>
+				
+				<input type="password" class="form-control" id="password" name="password" placeholder="Ingrese contraseña">
+				
+			</div>
+			
+		</div>
+
+		<div>
+			<br>	
+			<button type="submit" class="btn btn-outline-warning">Iniciar Sesion</button>
+			
+		</div>
+	</form>
+</div>	
+
 
 {% endblock contenido %}
 

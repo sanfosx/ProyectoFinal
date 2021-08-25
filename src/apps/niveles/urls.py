@@ -1,10 +1,28 @@
-from django.urls import path
-from .views import NivelListView, nivel_view
+from django.urls import path 
 
-app_name = 'niveles'
+from .	import views
+from .views import Listar, NivelListView
+
+app_name = "niveles"
 
 urlpatterns = [
-	path('', NivelListView.as_view(), name='main-view'),
-	path('<pk>/', nivel_view, name='nivel-view')
-	# <pk> es la clave de la tabla nivel, que usa nivel_view para traer el obj clase Nivel correspondiente
-]
+
+	path('homen/',Listar.as_view(template_name= 'niveles/homen.html'), name='homen'),
+	path('listar/<int:pk>/', NivelListView.as_view(template_name='niveles/listar'),name= 'listar')
+	
+] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

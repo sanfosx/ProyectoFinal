@@ -17,10 +17,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('home')
+SIGNUP_URL = reverse_lazy('signup')
+SIGNUP_REDIRECT_URL = reverse_lazy('login')
 
 # Application definition
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('niveles:homen')
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -33,8 +38,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.usuarios',
-    'apps.niveles',
-    'apps.preguntas'
+    'apps.niveles'
 ]
 
 THIRD_APPS = ["bootstrap5"
