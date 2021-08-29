@@ -51,6 +51,18 @@
           <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesion</a>
 
         </nav>
+        </nav>
+         <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" href="{% url 'principal' %}">Home</a>
+        </nav>
+        {% endif %}
+         {% if user.is_staff %}
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" href="{% url 'usuarios:listar' %}">Ver Accesos</a>
+        </nav>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" href="{% url 'addpregunta' %}">Agregar Preguntas</a>
+        </nav>
         {% endif %}
       </div>
       <div>

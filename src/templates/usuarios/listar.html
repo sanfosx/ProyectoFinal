@@ -1,0 +1,48 @@
+{% block contenido %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Lista de Usuarios</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Ultimo Acceso</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Email</th>
+							<td>{{a.datejoin}}</td>
+						
+						</tr>
+					</thead>
+					<tbody>
+						{% for a in usuarios %}
+						<tr>
+							<td>{{a.last_login}}</td>
+							<td>{{a.username}}</td>
+							<td>{{a.nombre}}</td>
+							<td>{{a.apellido|default:'-'}}</td>
+							<td>{{a.email}}</td>
+							<td>{{a.datejoin}}</td>
+							<td>
+								<a href="#">Editar</a>
+							</td>
+						</tr>
+						{% empty %}
+						<tr>
+							<td>No se encontraron resultados</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock contenido %}

@@ -25,7 +25,7 @@ SIGNUP_REDIRECT_URL = reverse_lazy('login')
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
 LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('niveles:homen')
+LOGIN_REDIRECT_URL = reverse_lazy('principal')
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -38,7 +38,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.usuarios',
-    'apps.niveles'
+    'apps.cuestionario'
 ]
 
 THIRD_APPS = ["bootstrap5"

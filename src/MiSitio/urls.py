@@ -7,10 +7,10 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', views.inicio, name='principal'),
-    path('home/', views.home, name='home'),
     path('usuarios/', include('apps.usuarios.urls')),
     path('usuarios/', include('django.contrib.auth.urls')),
-    path('niveles/', include('apps.niveles.urls'))
+    path('cuestionario/', include('apps.cuestionario.urls')),
+    
 
 
 ]

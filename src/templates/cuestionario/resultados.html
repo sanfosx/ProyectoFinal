@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+<style>
+
+.form { margin: 0 auto; 
+	width:auto;
+}
+
+.special-card {
+	background-color: rgba(245, 245, 245, 0.4) !important;
+
+}
+</style>
+
+{% block contenido %}
+
+<div>
+	<div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: 20rem;">
+		
+		<div class="card-body">
+				<h5 class="card-title">Puntos: {{puntos}}</h5>
+
+				<p class="card-text">Porcentaje: {{porcentaje}}%</p>
+				<p class="card-text">Duracion: {{time}} seconds</p>
+				<p class="card-text">Preguntas Correctas: {{correctas}}</p>
+				<p class="card-text">Preguntas Incorrectas: {{incorrectas}}</p>
+				<p class="card-text">Total de Preguntas: {{total}}</p>
+				<h5>Compartir</h5>
+	</div>
+</div>
+
+{% endblock contenido %}
+
+

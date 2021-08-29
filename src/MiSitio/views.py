@@ -6,9 +6,3 @@ def inicio (request):
 
 	return render(request,template_name)
 
-
-
-def home (request):
-	template_name="home.html"
-
-	return render(request,template_name)

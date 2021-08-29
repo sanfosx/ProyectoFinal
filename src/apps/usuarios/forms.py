@@ -9,14 +9,14 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(max_length=30, required=False, label= 'Su Apellido')
     
 
-    #email = forms.EmailField(max_length=254,required=False)
+
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
 
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
-            #self.fields[fieldname].label=fieldname
+            
 
     class Meta:
         User = get_user_model()
