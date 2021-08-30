@@ -18,10 +18,10 @@ def home(request):
         total=0
         for p in preguntas:
             total+=1
-            print(request.POST.get(p.preguntas))
+            print(request.POST.get(p.pregunta))
             print(p.correct)
             print()
-            if p.correct ==  request.POST.get(p.preguntas):
+            if p.correct ==  request.POST.get(p.pregunta):
                 puntos+=10
                 correctas+=1
             else:
