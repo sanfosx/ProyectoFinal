@@ -63,11 +63,11 @@ def addPregunta(request):
             form=addPreguntaform(request.POST)
             if(form.is_valid()):
                 form.save()
-                return redirect('/')
+                return redirect('listar')
         context={'form':form}
         return render(request,'cuestionario/addpregunta.html',context)
     else: 
-        return redirect('home') 
+        return redirect('/') 
 
 
 class ListarPreguntas(LoginRequiredMixin, ListView):
@@ -79,7 +79,7 @@ class ListarPreguntas(LoginRequiredMixin, ListView):
         if self.request.user.is_staff:
             return CuestionarioModel.objects.all()
 
-class EditarPregunta(UpdateView):
+class EditarPregunta(LoginRequiredMixin, UpdateView):
     model = CuestionarioModel
     template_name = "cuestionario/editar.html"
     form_class = addPreguntaform 
