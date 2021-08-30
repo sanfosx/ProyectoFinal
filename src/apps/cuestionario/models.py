@@ -12,4 +12,6 @@ class CuestionarioModel(models.Model):
         db_table = 'cuestionario'
     
     def __str__(self):
-        return self.pregunta
+
+        return self.pregunta 
+

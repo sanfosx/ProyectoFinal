@@ -1,10 +1,10 @@
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from .forms import SignUpForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
-from .models import Usuario
+from django.contrib.auth                import login, authenticate
+from django.shortcuts                   import render, redirect
+from django.urls                        import reverse_lazy
+from .forms                             import SignUpForm
+from django.contrib.auth.mixins         import LoginRequiredMixin
+from django.views.generic               import ListView
+from .models                            import Usuario
 
 def signup(request):
 

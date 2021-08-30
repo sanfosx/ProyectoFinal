@@ -8,5 +8,6 @@ urlpatterns = [
 
     path('home/',home,name='home'),
     path('addpregunta/', addPregunta,name='addpregunta'),
-   # path('resultado/', addPregunta,name='addPregunta'),
+    path('listar/', ListarPreguntas.as_view(),name='listar'),
+    path('editar/<int:pk>/',EditarPregunta.as_view(), name='editar')
 ]

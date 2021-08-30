@@ -1,14 +1,6 @@
 {% extends "base/base.html" %}
 <style>
 
-.form { margin: 0 auto; 
-	width:auto;
-}
-
-.special-card {
-	background-color: rgba(245, 245, 245, 0.4) !important;
-
-}
 </style>
 
 {% block contenido %}
@@ -27,7 +19,16 @@
 				<h5>Compartir</h5>
 	</div>
 </div>
+<br>
+<br>
+{%for p in resul%}
+<p class="text-white">{{p.pregunta}}</p>
+<p class="text-white">{{p.rta1}}</p>
+<p class="text-white">{{p.rta2}}</p>
+<p class="text-white">{{p.rta3}}</p>
+<p class="text-white">{{p}}</p>
 
+{%endfor%}
 {% endblock contenido %}
 
 

@@ -10,3 +10,5 @@ class Usuario(AbstractUser):
 	class Meta:
 		db_table = 'usuarios'
 
+def update_db_field(name,field,value):
+    Usuario.objects.get(name=name).update(field=value)

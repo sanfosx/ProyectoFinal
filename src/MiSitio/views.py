@@ -5,7 +5,7 @@ from	apps.usuarios.models	import Usuario
 def inicio (request):
 	template_name="inicio.html"
 
-	usuarios= Usuario.objects.all()
+	usuarios= Usuario.objects.filter(comparte=True)
 	context = {
             'usuarios':usuarios
         }

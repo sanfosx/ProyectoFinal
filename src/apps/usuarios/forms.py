@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, label='Su Nombre')
     last_name = forms.CharField(max_length=30, required=False, label= 'Su Apellido')
+    comparte = forms.BooleanField(required= True, label='Deseo compartir mis resultados')
     
 
 
