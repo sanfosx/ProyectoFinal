@@ -11,36 +11,74 @@ from apps.usuarios.models import Usuario
 from django.views.generic.edit          import UpdateView 
 from django.urls          import reverse_lazy
 
-def home(request):
+def home(request,nivel):
+    print('Nivel',nivel)
+#Cargo la cantidad de preguntas segun el nivel elegido
+
+    if nivel == 1:
+        preguntas=CuestionarioModel.objects.all()[:1]    
+    elif nivel ==2:
+        preguntas=CuestionarioModel.objects.all()[:2]
+    elif nivel==3:
+        preguntas=CuestionarioModel.objects.all()[:3]
+    else:
+        preguntas=CuestionarioModel.objects.all()
+
+ # Logica del juego    
     if request.method == 'POST':
         print(request.POST)
 
-        resul=[]
-      
-        preguntas=CuestionarioModel.objects.all()
+        ELIGIO=[]
+
         puntos=0
         incorrectas=0
         correctas=0
         total=0
         for p in preguntas:
             total+=1
-
-            resul.append(request.POST.get(p.pregunta))
-            print('Resul',request.POST.get(p.pregunta))
+            #pruebas----------------------------------
             
-            print(p.correct)
-            print()
+            #fin  de pruebas----------------------------- 
+
             if (p.correct) ==  request.POST.get(p.pregunta):
+
                 puntos+=10
                 correctas+=1
             else:
                 incorrectas+=1
+
+            #Guardo para mostrar
+            x=request.POST.get(p.pregunta)
+          
+            if x=="rta1":
+                print('ELIGIO',p.rta1)
+                ELIGIO.append(p.rta1)
+            elif x=="rta2":
+                print('ELIGIO',p.rta2)
+                ELIGIO.append(p.rta2)
+            else: 
+                print('ELIGIO',p.rta3)
+                ELIGIO.append(p.rta3)
+            
+            if p.correct=="rta1":
+                print('Pregunta correcta',p.rta1)
+                p.correct=p.rta1
+            elif p.correct=="rta2":
+                print('Pregunta correcta',p.rta2)
+                p.correct=p.rta2
+            else: 
+                print('Pregunta correcta',p.rta3)
+                p.correct=p.rta3    
+
         porcentaje = puntos/(total*10) *100
-        
+
+        #Guardo los puntos en usuario
+        request.user.ptos_totales=puntos
+        request.user.save()
 
         context = {
             'preguntas':preguntas,
-            'resul':resul,
+            'ELIGIO':ELIGIO,
             'puntos':puntos,
             'time': request.POST.get('timer'),
             'correctas':correctas,
@@ -50,13 +88,15 @@ def home(request):
         }
         return render(request,'cuestionario/resultados.html',context)
     else:
-        preguntas=CuestionarioModel.objects.all()
+       
         context = {
             'preguntas':preguntas
         }
         return render(request,'cuestionario/home.html',context)
  
 def addPregunta(request):    
+
+
     if request.user.is_staff:
         form=addPreguntaform()
         if(request.method=='POST'):
