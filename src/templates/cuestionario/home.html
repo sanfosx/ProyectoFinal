@@ -6,59 +6,61 @@
 
 {% block contenido %}
 
-    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width:40rem;">
 
         <div class="card-body">
 
-            <div align="right " id="displaytimer"><b>Tiempo: 0 seconds</b></div>
+            <div align="right" id="displaytimer"><b>Tiempo: 0 seconds</b></div>
 
             <form method='post' action=''>
                 {% csrf_token %}
                 {% for p  in preguntas%}
-                    <div class="form-group">
-                      <label for="preguntas">{{p.pregunta}}</label>
-                    </div><br>
-                <div class="form-check ">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" value="rta1">
-                        <label class="form-check-label" for="gridRadios1">
-                            {{p.rta1}}
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" value="rta2">
-                        <label class="form-check-label" for="gridRadios2">
-                            {{p.rta2}}
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" value="rta3">
-                        <label class="form-check-label" for="gridRadios3">
-                            {{p.rta3}}
-                        </label>
-                    </div>
 
-                    <br>  
-                    {% endfor %}
-                    <input id='timer' type='hidden' name="timer" value="">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Ver Resultados</button>
+                <div class="form-group" align="left">
+                      <label for="preguntas"><h4>{{forloop.counter}})_ {{p.pregunta}}</h4></label>
+                    
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" value="rta1">
+                            <label class="form-check-label" for="gridRadios1">
+                                {{p.rta1}}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" value="rta2">
+                            <label class="form-check-label" for="gridRadios2">
+                                {{p.rta2}}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" value="rta3">
+                            <label class="form-check-label" for="gridRadios3">
+                                {{p.rta3}}
+                            </label>
+                        </div>
+
+                        <br>  
+                        {% endfor %}
+                        <input id='timer' type='hidden' name="timer" value="">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Ver Resultados</button>
 
                 </div>
+            </form>
         </div>
-    </form>
+    
+    </div>
     {% block script %}
     <script>
 
         console.log('hello world')
-        const timer=document.getElementById('displaytimer')
+        const tiempo=document.getElementById('displaytimer')
         console.log(timer.textContent)
         const inputtag = document.getElementById('timer')
 
         t=0
         setInterval(()=>{
             t+=1
-            timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
+            tiempo.innerHTML ="<b>Tiempo: " +t+" seconds</b>"
             inputtag.value = t
         },1000)
     </script>

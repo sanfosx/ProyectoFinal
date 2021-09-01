@@ -64,23 +64,26 @@
           <a class="nav-link active" aria-current="page" href="{% url 'listar' %}">ABM-Preguntas</a>
         </nav>
         {% endif %}
+
       </div>
-      <div>
+        <div>
+
         <h1><br>Aniversario de la Provincia del Chaco.</h1>
         <p class="lead">Se cumplen 70 años desde que en 1951 se sancionara la Ley N°14037 que declaró como Provincia al Territorio Nacional del Chaco. Con motivo de este hecho histórico, te invitamos a responder una series de preguntas relacionadas con la historia y cultura de nuestra provincia</p>
         <p class="lead">
         </div>
-        <hr >
+        <hr>
       </header>
 
       <main class="px-3">
         <div align="center">
-
+        <div data-bs-spy="scroll" class="scrollspy-example" tabindex="0">
 
           {% block contenido %}
           
           {% endblock contenido %}
 
+        </div>
         </div>
 
       </main>

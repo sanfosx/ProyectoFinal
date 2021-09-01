@@ -10,19 +10,22 @@ from django.contrib.auth import get_user_model
 from apps.usuarios.models import Usuario
 from django.views.generic.edit          import UpdateView 
 from django.urls          import reverse_lazy
+import random
 
 def home(request,nivel):
     print('Nivel',nivel)
 #Cargo la cantidad de preguntas segun el nivel elegido
+    preguntas=CuestionarioModel.objects.all()    
 
-    if nivel == 1:
-        preguntas=CuestionarioModel.objects.all()[:1]    
-    elif nivel ==2:
-        preguntas=CuestionarioModel.objects.all()[:2]
-    elif nivel==3:
-        preguntas=CuestionarioModel.objects.all()[:3]
-    else:
-        preguntas=CuestionarioModel.objects.all()
+    if (nivel == 1 and len(preguntas)> 10):
+        preguntas=random.sample(list(preguntas),10)
+
+    elif (nivel == 2 and len(preguntas)> 25):
+        preguntas=random.sample(list(preguntas),25)
+
+    elif (nivel== 3 and len(preguntas)> 50):
+        preguntas=random.sample(list(preguntas),50)
+        
 
  # Logica del juego    
     if request.method == 'POST':
@@ -37,7 +40,7 @@ def home(request,nivel):
         for p in preguntas:
             total+=1
             #pruebas----------------------------------
-            
+            print("que tiene preguntas", preguntas)
             #fin  de pruebas----------------------------- 
 
             if (p.correct) ==  request.POST.get(p.pregunta):
