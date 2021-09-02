@@ -10,13 +10,15 @@
         
         <div class="card-body">
             <h1 class="card-title text-primary">Agregar Pregunta</h1><br>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {% include "includes/_form_errors.html" with formulario=form %}
-                {% include "includes/_forms.html" with formulario=form %}
-                <br>
-                <button type="submit" class="btn btn-outline-primary">Guardar</button>
-             </form>
+                <form action="" method="POST">
+                <div align="left">
+                    {% csrf_token %}
+                    {% include "includes/_form_errors.html" with formulario=form %}
+                    {% include "includes/_forms.html" with formulario=form %}
+                    <br>
+                </div>
+                    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                 </form>
         </div>
     </div>
     <br>
