@@ -14,20 +14,16 @@ import random
 
 def home(request,nivel):
     
-    #Cargo la cantidad de preguntas segun el nivel elegido
     preguntas=CuestionarioModel.objects.all()    
 
     if (nivel == 1 and len(preguntas)> 3):
-        preguntas=random.sample(list(preguntas),3)
+        preguntas=preguntas[:3]
 
     elif (nivel == 2 and len(preguntas)> 5):
-        preguntas=random.sample(list(preguntas),5)
-
+        preguntas=preguntas[:5]
     elif (nivel== 3 and len(preguntas)> 10):
-        preguntas=random.sample(list(preguntas),10)
-    
-
-    print("PREGUNTAS INICIO",preguntas)
+        preguntas=preguntas[:10]
+    #print("PREGUNTAS INICIO",preguntas)
     print("------------------------------------")
 
  # Logica del juego    
@@ -36,7 +32,7 @@ def home(request,nivel):
         print('Nivel',nivel)
         aprueba=False
 
-        print("PREGUNTAS POST",preguntas)
+        #print("PREGUNTAS POST",preguntas)
         print("------------------------------------")
         ELIGIO=[]
 
@@ -47,7 +43,7 @@ def home(request,nivel):
         for p in preguntas:
             total+=1
             #pruebas----------------------------------
-            print("que tiene preguntas", preguntas)
+            #print("que tiene preguntas", preguntas)
             #fin  de pruebas----------------------------- 
 
             if (p.correct) ==  request.POST.get(p.pregunta):
@@ -122,6 +118,10 @@ def home(request,nivel):
         }
         return render(request,'cuestionario/resultados.html',context)
     else:
+        
+
+
+
         print("PREGUNTAS NO POST",preguntas)
         print("------------------------------------")
         #preguntas=CuestionarioModel.objects.all()
