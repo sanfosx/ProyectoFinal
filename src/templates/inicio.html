@@ -1,97 +1,114 @@
 {% extends "base/base.html" %}
-
 {% block contenido %}
-
 {% if not user.is_authenticated %}
 <a href="{% url 'login' %}" class="btn btn-outline-warning">Iniciar sesion</a>   <--    ó   -->   
-  <a href="{% url 'usuarios:signup' %}" class="btn btn-outline-success">Registrarse</a>
-  {% else %}
-
-
-  <div class="row g-0">
-    <div class="col-sm-6 col-md-8">
+<a href="{% url 'usuarios:signup' %}" class="btn btn-outline-success">Registrarse</a>
+{% else %}
+<div class="row g-0">
+   <div class="col-sm-6 col-md-8" >
       <div  class="row row-cols-1 row-cols-md-2 g-5">
-
-        <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem;">
-
-         <h5 class="card-header" style="background-color:coral;";> <p class="text-dark" >Nivel Facil</p></h5>
-         <div class="card-body">
-
-          <p class="card-text" ><p class="text-whit">10 preguntas.</p></p>
-
-          <a href="{% url 'home' 1%}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
-          </div>
-        </div>
-
-        <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem;">
-
-         <h5 class="card-header" style="background-color:coral;";> <p class="text-dark" >Nivel Medio</p></h5>
-         <div class="card-body">
-
-          <p class="card-text" ><p class="text-whit">25 preguntas.</p></p>
-
-          <a href="{% url 'home' 2 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
-          </div>
-        </div>
-
-        <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem;">
-
-         <h5 class="card-header" style="background-color:coral;";> <p class="text-dark" >Nivel Dificil</p></h5>
-         <div class="card-body">
-
-          <p class="card-text" ><p class="text-whit">50 preguntas.</p></p>
-
-          <a href="{% url 'home' 3 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
-          </div>
-        </div>
-
-        <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem;">
-
-         <h5 class="card-header" style="background-color:coral;";> <p class="text-dark" >Nivel Chaqueñazo</p></h5>
-         <div class="card-body">
-
-          <p class="card-text" ><p class="text-whit">Muchas preguntas</p></p>
-
-          <a href="{% url 'home' 4 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
-          </div>
-        </div>
-
-
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: auto;">
-      <div class="card-header"><h3 class="text-white">Tabla de Resultados </h3></div> 
-      <div class="card-body">
-
-       <table class="table caption-top  text-white">
-        <thead>
-          <tr>
-
-            <th scope="col">Usuario</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Puntuacion</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%for u in usuarios %}
-          <tr>
-
-            <td>{{u.username}}</td>
-            <td>{{u.first_name}}</td>
-            <td>{{u.ptos_totales}}</td>
-            {%endfor%}
-          </tbody>
-        </table>
+         <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem; margin-right: 20px;">
+            <h4 class="card-header" style="background-color:white;">
+               <p class="text-primary" >Nivel Facil</p>
+            </h4>
+            <div class="card-body">
+               <p class="card-text" >
+               <p class="text-whit">10 preguntas.</p>
+               </p>
+               <p>Aprueba con el 50%</p>
+               <p>Suma 10 puntos por acierto</p>
+               <br>
+               <a href="{% url 'home' 1%}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
+            </div>
+         </div>
+         <br>
+         <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem; margin-right:20px;">
+            <h4 class="card-header" style="background-color:white;">
+               <p class="text-primary" >Nivel Medio</p>
+            </h4>
+            <div class="card-body">
+               <p class="card-text" >
+               <p class="text-whit">25 preguntas.</p>
+               </p>
+               <p>Aprueba con el 60%</p>
+               <p>Suma 25 puntos por acierto</p>
+               <br>
+               {%if user.is_staff or user.nivel == "Medio"%}
+               <a href="{% url 'home' 2 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
+               {%else%}
+               <button type="button" class="btn btn-outline-primary" disabled>Iniciar Cuestionario</button>
+               {%endif%}
+            </div>
+         </div>
+         <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem; margin-right:20px;">
+            <h4 class="card-header" style="background-color:white;">
+               <p class="text-primary" >Nivel Dificil</p>
+            </h4>
+            <div class="card-body">
+               <p class="card-text" >
+               <p class="text-whit">50 preguntas.</p>
+               </p>
+               <p>Aprueba con el 80%</p>
+               <p>Suma 50 puntos por acierto</p>
+               <br>
+               {%if user.is_staff or user.nivel == "Dificil"%}
+               <a href="{% url 'home' 3 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
+               {%else%}
+               <button type="button" class="btn btn-outline-primary" disabled>Iniciar Cuestionario</button>
+               {%endif%}
+            </div>
+         </div>
+         <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 20rem; margin-right:20px;">
+            <h4 class="card-header" style="background-color:white;">
+               <p class="text-primary" >Nivel Chaqueñazo</p>
+            </h4>
+            <div class="card-body">
+               <p class="card-text" >
+               <p class="text-whit">Muchas preguntas</p>
+               </p>
+               <p>Aprueba con el 100%</p>
+               <p>Suma 100 puntos por acierto</p>
+               <br>
+               {%if user.is_staff or user.nivel == "Chaqueñazo"%}
+               <a href="{% url 'home' 4 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
+               {%else%}
+               <button type="button" class="btn btn-outline-primary" disabled>Iniciar Cuestionario</button>
+               {%endif%}
+            </div>
+         </div>
       </div>
-      <br><br><br>
-    </div>
-  </div>
+   </div>
+   <div class="col-sm-6 col-md-4">
+      <div class="card text-white bg-dark mb-3 card border-primary mb-3">
+         <div class="card-header">
+            <h2 class="text-white">Tabla de Resultados </h2>
+         </div>
+         <div class="card-body">
+            <table class="table caption-top  text-white">
+               <thead>
+                  <tr>
+                     <th scope="col">Usuario</th>
+                     <th scope="col">Nombre</th>
+                     <th scope="col">Puntuacion</th>
+                     <th scope="col">Nivel</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {%for u in usuarios %}
+                  <tr>
+                     <td>{{u.username}}</td>
+                     <td>{{u.first_name}}</td>
+                     <td>{{u.ptos_totales}}</td>
+                     <td>{{u.nivel}}</td>
+                     {%endfor%}
+               </tbody>
+            </table>
+         </div>
+        
+      </div>
+   </div>
 </div>
-
 {% endif %}
-
 {% endblock contenido %}
 
 

@@ -51,10 +51,6 @@
           <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesion</a>
 
         </nav>
-        </nav>
-         <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link active" aria-current="page" href="{% url 'principal' %}">Home</a>
-        </nav>
         {% endif %}
          {% if user.is_staff %}
         <nav class="nav nav-masthead justify-content-center float-md-end">
@@ -64,6 +60,11 @@
           <a class="nav-link active" aria-current="page" href="{% url 'listar' %}">ABM-Preguntas</a>
         </nav>
         {% endif %}
+        </nav>
+         <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" href="{% url 'principal' %}">Home</a>
+        </nav>
+        
 
       </div>
         <div>

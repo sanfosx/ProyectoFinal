@@ -13,24 +13,31 @@ from django.urls          import reverse_lazy
 import random
 
 def home(request,nivel):
-    print('Nivel',nivel)
-#Cargo la cantidad de preguntas segun el nivel elegido
+    
+    #Cargo la cantidad de preguntas segun el nivel elegido
     preguntas=CuestionarioModel.objects.all()    
 
-    if (nivel == 1 and len(preguntas)> 10):
+    if (nivel == 1 and len(preguntas)> 3):
+        preguntas=random.sample(list(preguntas),3)
+
+    elif (nivel == 2 and len(preguntas)> 5):
+        preguntas=random.sample(list(preguntas),5)
+
+    elif (nivel== 3 and len(preguntas)> 10):
         preguntas=random.sample(list(preguntas),10)
+    
 
-    elif (nivel == 2 and len(preguntas)> 25):
-        preguntas=random.sample(list(preguntas),25)
-
-    elif (nivel== 3 and len(preguntas)> 50):
-        preguntas=random.sample(list(preguntas),50)
-        
+    print("PREGUNTAS INICIO",preguntas)
+    print("------------------------------------")
 
  # Logica del juego    
     if request.method == 'POST':
         print(request.POST)
+        print('Nivel',nivel)
+        aprueba=False
 
+        print("PREGUNTAS POST",preguntas)
+        print("------------------------------------")
         ELIGIO=[]
 
         puntos=0
@@ -44,8 +51,15 @@ def home(request,nivel):
             #fin  de pruebas----------------------------- 
 
             if (p.correct) ==  request.POST.get(p.pregunta):
+                if request.user.nivel=="Medio": 
+                    puntos+=25
+                elif request.user.nivel=="Dificil":
+                    puntos+=50
+                elif request.user.nivel=="Chaqueñazo":
+                    puntos+=100
+                else:
+                    puntos+=10
 
-                puntos+=10
                 correctas+=1
             else:
                 incorrectas+=1
@@ -59,7 +73,7 @@ def home(request,nivel):
             elif x=="rta2":
                 print('ELIGIO',p.rta2)
                 ELIGIO.append(p.rta2)
-            else: 
+            elif x=="rta3":
                 print('ELIGIO',p.rta3)
                 ELIGIO.append(p.rta3)
             
@@ -72,14 +86,31 @@ def home(request,nivel):
             else: 
                 print('Pregunta correcta',p.rta3)
                 p.correct=p.rta3    
+        
+        #Segun el porcentaje y el nivel aprueba y pasa al siguiente nivel
 
-        porcentaje = puntos/(total*10) *100
+        porcentaje = (correctas/total) *100
+
+        if (request.user.nivel=="Medio" and porcentaje>=60): 
+            request.user.nivel="Dificil"
+            aprueba=True
+        elif (request.user.nivel=="Dificil" and porcentaje>=80):
+            request.user.nivel="Chaqueñazo"
+            aprueba=True
+        elif (request.user.nivel=="Chaqueñazo" and porcentaje==100):
+            request.user.nivel="DIOS"
+            aprueba=True
+        elif (request.user.nivel=="Facil" and porcentaje>=50):
+            request.user.nivel="Medio"
+            aprueba=True
 
         #Guardo los puntos en usuario
-        request.user.ptos_totales=puntos
+        if request.user.ptos_totales < puntos:
+            request.user.ptos_totales=puntos
         request.user.save()
 
         context = {
+            'aprueba':aprueba,
             'preguntas':preguntas,
             'ELIGIO':ELIGIO,
             'puntos':puntos,
@@ -91,7 +122,9 @@ def home(request,nivel):
         }
         return render(request,'cuestionario/resultados.html',context)
     else:
-       
+        print("PREGUNTAS NO POST",preguntas)
+        print("------------------------------------")
+        #preguntas=CuestionarioModel.objects.all()
         context = {
             'preguntas':preguntas
         }

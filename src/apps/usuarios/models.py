@@ -3,9 +3,9 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
 
-	ptos_totales = models.CharField(max_length=10,blank=True,null=True,default='0')
+	ptos_totales = models.IntegerField(blank=True,null=True,default=0)
 	comparte = models.BooleanField(default=True)
-	
+	nivel = models.CharField(max_length=20,blank=True,null=True,default='Facil')
 	
 	class Meta:
 		db_table = 'usuarios'
