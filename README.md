@@ -3,7 +3,6 @@
 _Primer proyecto proyecto del modulo de desarollo web_
 _Usando template base: https://getbootstrap.com/docs/5.1/examples/cover/
 
-## Comenzando 🚀
 
 _Proyecto Web Aniversario del Chaco del Modulo de Desarollo web_
 
