@@ -14,7 +14,8 @@ import random
 
 def home(request,nivel):
     
-    preguntas=CuestionarioModel.objects.all()    
+    preguntas=CuestionarioModel.objects.all() 
+
 
     if (nivel == 1 and len(preguntas)> 3):
         preguntas=preguntas[:3]
@@ -83,27 +84,38 @@ def home(request,nivel):
                 print('Pregunta correcta',p.rta3)
                 p.correct=p.rta3    
         
-        #Segun el porcentaje y el nivel aprueba y pasa al siguiente nivel
+        #Segun el porcentaje y el nivel pasa al siguiente nivel
 
         porcentaje = (correctas/total) *100
 
-        if (request.user.nivel=="Medio" and porcentaje>=60): 
+        if (request.user.nivel=="Medio" and nivel==2 and porcentaje>=60): 
             request.user.nivel="Dificil"
-            aprueba=True
-        elif (request.user.nivel=="Dificil" and porcentaje>=80):
+            
+        elif (request.user.nivel=="Dificil" and nivel==3 and porcentaje>=80):
             request.user.nivel="Chaqueñazo"
-            aprueba=True
-        elif (request.user.nivel=="Chaqueñazo" and porcentaje==100):
+            
+        elif (request.user.nivel=="Chaqueñazo" and nivel==4 and porcentaje==100):
             request.user.nivel="DIOS"
-            aprueba=True
+            
         elif (request.user.nivel=="Facil" and porcentaje>=50):
             request.user.nivel="Medio"
+           
+        #Para no romper la vista cuando rehace el cuestionario calculo aparte si aprueba o no 
+        if (nivel==4 and porcentaje ==100):
+            aprueba=True
+        elif (nivel==3 and porcentaje >=80):
+            aprueba=True
+        elif (nivel==2 and porcentaje >=60):
+            aprueba=True
+        elif (nivel==1 and porcentaje >=50):
             aprueba=True
 
         #Guardo los puntos en usuario
         if request.user.ptos_totales < puntos:
             request.user.ptos_totales=puntos
         request.user.save()
+        print("QUE TIENE APRUEBA",aprueba)
+        print("------------------------------------")
 
         context = {
             'aprueba':aprueba,
@@ -119,13 +131,11 @@ def home(request,nivel):
         return render(request,'cuestionario/resultados.html',context)
     else:
         
-
-
-
         print("PREGUNTAS NO POST",preguntas)
         print("------------------------------------")
         #preguntas=CuestionarioModel.objects.all()
         context = {
+            'nivel':nivel,
             'preguntas':preguntas
         }
         return render(request,'cuestionario/home.html',context)

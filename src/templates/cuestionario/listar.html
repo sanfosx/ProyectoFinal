@@ -2,37 +2,38 @@
 
 {% block contenido %}
 
-          <div class="row" style="padding:10px;">
-          <div class="col">
-            <a href="{% url 'addpregunta' %}" class="btn btn-primary" style="float:right;">Agregar Pregunta</a>
-        </div>
-        </div>
-          <table class="table caption-top  text-white">
-            <thead>
-                <tr>
-                  <th scope="col"class="text-white align-center"><h4>Pregunta</h4></th>
-                  <th scope="col"class="text-white align-center"><h4>Respuesta 1</h4></th>
-                  <th scope="col"class="text-white align-center"><h4>Respuesta 2</h4></th>
-                  <th scope="col"class="text-white align-center"><h4>Respuesta 3</h4></th>
-                  <th scope="col"class="text-white align-center"><h4>Correcta</h4></th>
-                  <th scope="col"class="text-white align-center"><h4>#</h4></th>
-                </tr>
-            </thead>
-              <tbody>
-                    {%for p in preguntas %}
-               <tr>
-                <td>{{p.pregunta}}</td>
-                <td>{{p.rta1}}</td>
-                <td>{{p.rta2}}</td>
-                <td>{{p.rta3}}</td>
-                <td>{{p.correct}}</td>
-                <td>
-                  <a href="{% url 'editar' p.pk %}">Editar</a>
-                </td>
-              </tr>
-                      
-                  {%endfor%}
-              </tbody>
-          </table>
+<div class="row" style="padding:10px;">
+  <div class="col">
+    <a href="{% url 'addpregunta' %}" class="btn btn-primary" style="float:right;">Agregar Pregunta</a>
+  </div>
+</div>
+<table class="table caption-top  text-white">
+  <thead>
+    <tr>
+      <th scope="col"class="text-white align-center"><h4>Pregunta</h4></th>
+      <th scope="col"class="text-white align-center"><h4>Respuesta 1</h4></th>
+      <th scope="col"class="text-white align-center"><h4>Respuesta 2</h4></th>
+      <th scope="col"class="text-white align-center"><h4>Respuesta 3</h4></th>
+      <th scope="col"class="text-white align-center"><h4>Correcta</h4></th>
+      <th scope="col"class="text-white align-center"><h4>#</h4></th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for p in preguntas %}
+    <tr>
+      <td>{{p.pregunta}}</td>
+      <td>{{p.rta1}}</td>
+      <td>{{p.rta2}}</td>
+      <td>{{p.rta3}}</td>
+      <td>{{p.correct}}</td>
+      <td>
+        <a href="{% url 'editar' p.pk %}">Editar</a>
+      </td>
+    </tr>
+
+    {%endfor%}
+  </tbody>
+</table>
+
    
 {% endblock %}

@@ -41,7 +41,7 @@ LOCAL_APPS = [
     'apps.cuestionario'
 ]
 
-THIRD_APPS = ["bootstrap5"
+THIRD_APPS = ['bootstrap5','django_bootstrap_icons'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS

@@ -33,7 +33,7 @@
                <p>Aprueba con el 60%</p>
                <p>Suma 25 puntos por acierto</p>
                <br>
-               {%if user.is_staff or user.nivel == "Medio"%}
+               {%if user.is_staff or user.nivel == "Medio" or user.nivel == "Dificil" or user.nivel == "Chaqueñazo"%}
                <a href="{% url 'home' 2 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
                {%else%}
                <button type="button" class="btn btn-outline-primary" disabled>Iniciar Cuestionario</button>
@@ -51,7 +51,7 @@
                <p>Aprueba con el 80%</p>
                <p>Suma 50 puntos por acierto</p>
                <br>
-               {%if user.is_staff or user.nivel == "Dificil"%}
+               {%if user.is_staff or user.nivel == "Dificil" or user.nivel == "Chaqueñazo"%}
                <a href="{% url 'home' 3 %}" class="btn btn-outline-primary">Iniciar Cuestionario</a>
                {%else%}
                <button type="button" class="btn btn-outline-primary" disabled>Iniciar Cuestionario</button>
@@ -79,7 +79,7 @@
       </div>
    </div>
    <div class="col-sm-6 col-md-4">
-      <div class="card text-white bg-dark mb-3 card border-primary mb-3">
+      <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: auto;">
          <div class="card-header">
             <h2 class="text-white">Tabla de Resultados </h2>
          </div>
@@ -104,7 +104,7 @@
                </tbody>
             </table>
          </div>
-        
+         
       </div>
    </div>
 </div>

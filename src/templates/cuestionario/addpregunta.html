@@ -3,19 +3,24 @@
 
 {% block contenido %}
 
-<div>
-    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: 20rem;">
+
+
+
+    <div class="card text-white bg-dark  card border-primary" style="max-width: 40rem;">
         
         <div class="card-body">
-                <h5 class="card-title">Agregar Pregunta</h5><br>
+            <h1 class="card-title text-primary">Agregar Pregunta</h1><br>
             <form action="" method="POST">
-              {% csrf_token %}
-                {{form.as_p}}
+                {% csrf_token %}
+                {% include "includes/_form_errors.html" with formulario=form %}
+                {% include "includes/_forms.html" with formulario=form %}
                 <br>
-             <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                <button type="submit" class="btn btn-outline-primary">Guardar</button>
              </form>
+        </div>
     </div>
-</div>
+    <br>
+
     
 {% endblock %}
 

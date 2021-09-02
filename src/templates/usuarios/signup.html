@@ -2,22 +2,18 @@
 
 {% block contenido %}
 
-<style>
+  <div class="card text-white bg-dark mb-3 card border-success mb-3" style="width: 30rem;">
+    <div style="padding-left:5rem;padding-right:5rem;"><br>
+    	<h1 class="text-success">Registro</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% include "includes/_form_errors.html" with formulario=form %}
+        {% include "includes/_forms.html" with formulario=form %}
+       <button type="submit" class="btn btn-outline-success">Registrarse</button>
+      </form>
+      <br>
+    </div>
+  </div>
 
-form { margin: 0 auto; 
-		width:250px;
-}
-
-</style>
-
-<div>
-	<h2>Registro</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-   <button type="submit" class="btn btn-outline-success">Registrarse</button>
-  </form>
-</div>
 
 {% endblock contenido %}

@@ -1,164 +1,166 @@
 {% extends "base/base.html" %}
 {% block contenido %}
 
-
-<div>
-	<h1>Resultados</h1>
-	<div class="col-sm-6 col-md-4">
-				<div class="card text-white bg-dark mb-3 card border-primary mb-3">
-					<div class="card-body">
-						<h5 class="card-title">Puntos: {{puntos}}</h5>
-						<p class="card-text">Porcentaje: {{porcentaje}}%</p>
-						<p class="card-text">Duracion: {{time}} segundos</p>
-						<p class="card-text">Preguntas Correctas: {{correctas}}</p>
-						<p class="card-text">Preguntas Incorrectas: {{incorrectas}}</p>
-						<p class="card-text">Total de Preguntas: {{total}}</p>
-						<h5>Compartir</h5>
-					</div>
-				</div>
-			
+<div class="card text-white bg-dark mb-3 card border-primary mb-3" style="width: 30rem;">
+	<div class="card-body">
+		<h1 class="text-primary">Resultado</h1><br>
+		{%if aprueba %}
+		<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-exclamation-circle text-success" viewBox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+		</svg>
+		<br><br>
+		<h4 class="card-text text-success">Aprobado</h4>
+		{%else%}
+		<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			<path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+		</svg>
+		
+		<br><br>
+		<h4 class="card-text text-danger">Vuelve a intentarlo</h4>
+		{%endif%}
+		<br>
+		<div align="left">
+			<h5 class="card-title">Puntos: {{puntos}}</h5>
+			<p class="card-text">Porcentaje: {{porcentaje}}%</p>
+			<p class="card-text">Duracion: {{time}} segundos</p>
+			<p class="card-text">Preguntas Correctas: {{correctas}}</p>
+			<p class="card-text">Preguntas Incorrectas: {{incorrectas}}</p>
+			<br>
 		</div>
+		<a href="{% url 'principal' %}" class="btn btn-outline-primary">Volver al menu</a>
+	</div>
 </div>
 
-	<div class="row g-0">
-		<div  class="row row-cols-1 row-cols-md-2 g-5">
-			<div class="col-sm-6 col-md-8">
-					{% for p  in preguntas%}
-					<div align="left">
-						<h4>{{forloop.counter}})_ {{p.pregunta}}</h4>
-					
-						{% if p.rta1 in ELIGIO%}	
-						{% if p.rta1 == p.correct%}	
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
-								<label class="form-check-label" for="gridRadios1">
-								{{p.rta1}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-danger" role="alert" >
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
-								<label class="form-check-label" for="gridRadios1">
-								{{p.rta1}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{% else%}
-						{%if p.rta1 == p.correct%}
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" disabled>
-								<label class="form-check-label" for="gridRadios1">
-								{{p.rta1}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-dark" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1"  disabled>
-								<label class="form-check-label" for="gridRadios1">
-								{{p.rta1}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{%endif%}
-						{% if p.rta2 in ELIGIO%}	
-						{% if p.rta2 == p.correct%}		
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" checked disabled>
-								<label class="form-check-label" for="gridRadios2">
-								{{p.rta2}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-danger" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" checked disabled>
-								<label class="form-check-label" for="gridRadios2">
-								{{p.rta2}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{% else%}
-						{%if p.rta2 == p.correct%}
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" disabled>
-								<label class="form-check-label" for="gridRadios2">
-								{{p.rta2}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-dark" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2"  disabled>
-								<label class="form-check-label" for="gridRadios2">
-								{{p.rta2}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{%endif%}
-						{% if p.rta3 in ELIGIO%}	
-						{% if p.rta3 == p.correct%}		
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" checked disabled>
-								<label class="form-check-label" for="gridRadios3">
-								{{p.rta3}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-danger" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" checked disabled>
-								<label class="form-check-label" for="gridRadios3">
-								{{p.rta3}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{% else%}
-						{%if p.rta3 == p.correct%}
-						<div class="alert alert-success" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" disabled>
-								<label class="form-check-label" for="gridRadios3">
-								{{p.rta3}}
-								</label>
-							</div>
-						</div>
-						{%else%}
-						<div class="alert alert-dark" role="alert">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3"  disabled>
-								<label class="form-check-label" for="gridRadios3">
-									{{p.rta3}}
-								</label>
-							</div>
-						</div>
-						{%endif%}
-						{%endif%}
-						{%endfor%}
-						
-					</div>
-				
-			</div>
-		</div>
-		
-	</div>
+{% for p  in preguntas%}
+<div align="left" style="width:25rem;">
+	<h4>{{forloop.counter}})_ {{p.pregunta}}</h4>
 
+	{% if p.rta1 in ELIGIO%}	
+	{% if p.rta1 == p.correct%}	
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+			<label class="form-check-label" for="gridRadios1">
+				{{p.rta1}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-danger" role="alert" >
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+			<label class="form-check-label" for="gridRadios1">
+				{{p.rta1}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{% else%}
+	{%if p.rta1 == p.correct%}
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" disabled>
+			<label class="form-check-label" for="gridRadios1">
+				{{p.rta1}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-dark" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1"  disabled>
+			<label class="form-check-label" for="gridRadios1">
+				{{p.rta1}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{%endif%}
+	{% if p.rta2 in ELIGIO%}	
+	{% if p.rta2 == p.correct%}		
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" checked disabled>
+			<label class="form-check-label" for="gridRadios2">
+				{{p.rta2}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-danger" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" checked disabled>
+			<label class="form-check-label" for="gridRadios2">
+				{{p.rta2}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{% else%}
+	{%if p.rta2 == p.correct%}
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2" disabled>
+			<label class="form-check-label" for="gridRadios2">
+				{{p.rta2}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-dark" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios2"  disabled>
+			<label class="form-check-label" for="gridRadios2">
+				{{p.rta2}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{%endif%}
+	{% if p.rta3 in ELIGIO%}	
+	{% if p.rta3 == p.correct%}		
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" checked disabled>
+			<label class="form-check-label" for="gridRadios3">
+				{{p.rta3}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-danger" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" checked disabled>
+			<label class="form-check-label" for="gridRadios3">
+				{{p.rta3}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{% else%}
+	{%if p.rta3 == p.correct%}
+	<div class="alert alert-success" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3" disabled>
+			<label class="form-check-label" for="gridRadios3">
+				{{p.rta3}}
+			</label>
+		</div>
+	</div>
+	{%else%}
+	<div class="alert alert-dark" role="alert">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios3"  disabled>
+			<label class="form-check-label" for="gridRadios3">
+				{{p.rta3}}
+			</label>
+		</div>
+	</div>
+	{%endif%}
+	{%endif%}
+	{%endfor%}
+</div>
 
 {% endblock contenido %}
-

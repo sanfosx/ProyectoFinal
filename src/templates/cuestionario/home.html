@@ -6,12 +6,12 @@
 
 {% block contenido %}
 
-    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width:40rem;">
+    <div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width:auto;">
 
         <div class="card-body">
-
+            <h1>Cuestionario {{nivel}}</h1><hr> 
             <div align="right" id="displaytimer"><b>Tiempo: 0 seconds</b></div>
-
+               
             <form method='post' action=''>
                 {% csrf_token %}
                 {% for p  in preguntas%}
