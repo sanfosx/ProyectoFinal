@@ -1,0 +1,174 @@
+{% extends "base/base.html" %}
+{% block contenido %}
+
+<div><h1>Resultados</h1></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-8">
+			<div align="left">
+
+				{% for p  in preguntas%}
+
+				<h4>{{forloop.counter}})_ {{p.pregunta}}</h4>
+
+				<div style="max-width:25rem;">
+					{% if p.rta1 in ELIGIO%}	
+					{% if p.rta1 in p.correct%}	
+
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta1}}
+							</label>
+						</div>
+					</div>
+
+					{%else%}
+					<div class="alert alert-danger" role="alert" >
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta1}}
+							</label>
+						</div>
+					</div>
+					{%endif%}
+					{% else%}
+					{%if p.rta1 in p.correct%}
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta1}}
+							</label>
+						</div>
+					</div>
+					{%else%}
+					<div class="alert alert-dark" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1"  disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta1}}
+							</label>
+						</div>
+					</div>
+					{%endif%}
+
+					{%endif%}
+
+
+					{% if p.rta2 in ELIGIO%}	
+					{% if p.rta2 in p.correct%}		
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta2}}
+							</label>
+						</div>
+					</div>
+					{%else%}
+					<div class="alert alert-danger" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta2}}
+							</label>
+						</div>
+					</div>
+					{%endif%}
+
+					{% else%}
+					{%if p.rta2 in p.correct%}
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta2}}
+							</label>
+						</div>
+					</div>
+					{%else%}
+					<div class="alert alert-dark" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1"  disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta2}}
+							</label>
+						</div>
+					</div>
+					{%endif%}
+					{%endif%}
+
+					{% if p.rta3 in ELIGIO%}	
+					{% if p.rta3 in p.correct%}		
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta3}}
+							</label>
+						</div>
+					</div>
+					{%else%}
+					<div class="alert alert-danger" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" checked disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta3}}
+							</label>
+						</div>
+					</div>
+					{%endif%}
+
+					{% else%}
+					{%if p.rta3 in p.correct%}
+					<div class="alert alert-success" role="alert">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1" disabled>
+							<label class="form-check-label" for="gridRadios1">
+								{{p.rta3}}
+							</label>
+						</div>
+						<div class="alert alert-success" role="alert">
+							{%else%}
+							<div class="alert alert-dark" role="alert">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{p.pregunta}}" id="gridRadios1"  disabled>
+									<label class="form-check-label" for="gridRadios1">
+										{{p.rta3}}
+									</label>
+								</div>
+							</div>
+							{%endif%}
+							{%endif%}
+
+							{%endfor%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6 col-md-4">
+				<div align= "left">
+					<div class="card text-white bg-dark mb-3 card border-primary mb-3" style="max-width: 20rem;">
+						
+						<div class="card-body">
+							<h5 class="card-title">Puntos: {{puntos}}</h5>
+
+							<p class="card-text">Porcentaje: {{porcentaje}}%</p>
+							<p class="card-text">Duracion: {{time}} segundos</p>
+							<p class="card-text">Preguntas Correctas: {{correctas}}</p>
+							<p class="card-text">Preguntas Incorrectas: {{incorrectas}}</p>
+							<p class="card-text">Total de Preguntas: {{total}}</p>
+							<h5>Compartir</h5>
+						</div>
+					</div>
+					<br>
+				</div>
+		</div>
+	</div>
+
+{% endblock contenido %}
