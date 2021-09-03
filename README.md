@@ -11,9 +11,7 @@ _Proyecto Web Aniversario del Chaco del Modulo de Desarollo web_
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
 ```
-git init
-
-git clone https://github.com/sanfosx/Webchaco.git
+git clone https://github.com/sanfosx/ProyectoFinal
 ```
 
 ### Pre-requisitos 📋
@@ -39,6 +37,9 @@ DATABASES = {
     }
 }
 ```
+_Importar los datos en la Base de Datos_
+
+_Para probar el proyecto se deben cargar las preguntas, esto se puede realizar cargando el archivo **bdgrupo4.json** por CMD (que incluye la Base de Datos completa con preguntas y usuarios de prueba) o bien el archivo bdgrupo4.csv (que contiene sólo las preguntas) desde el gestor de Base de Datos. Ambos archivos se encuentran en la carpeta **_docs_** del Proyecto._
 
 ## Construido con 🛠️
 
@@ -55,5 +56,10 @@ DATABASES = {
 * **Cristian Oviedo** - *Student* - [Cristian934]
 * **Lucas Ibañez** - *Developer* - [lucasibaniez]
 
+### Video Demostrativo y Manual del Usuario:
+
+_Se puede acceder desde:_ https://drive.google.com/drive/folders/10l6z6KXNO-wBVqrLEx8HE8qd4o7XnA0S
+
+_Visualizar el video:_ https://youtu.be/d6Vavzoiz_U
 
 ---
