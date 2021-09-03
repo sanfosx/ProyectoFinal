@@ -11,7 +11,7 @@ class SignUpForm(UserCreationForm):
     email = forms.CharField(max_length=50, required=False, label='Email:',widget=forms.TextInput(attrs={'class':'form-control'}))
     first_name = forms.CharField(max_length=30, required=False, label='Nombre:',widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(max_length=30, required=False, label= 'Apellido:',widget=forms.TextInput(attrs={'class':'form-control'}))
-    comparte = forms.BooleanField(required=True, label='Compartir mis resultados:',widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+    comparte = forms.BooleanField(required=False, label='Compartir mis resultados:',widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     
 
 
