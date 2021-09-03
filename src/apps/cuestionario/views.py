@@ -17,13 +17,13 @@ def home(request,nivel):
     preguntas=CuestionarioModel.objects.all() 
 
 
-    if (nivel == 1 and len(preguntas)> 3):
-        preguntas=preguntas[:3]
-
-    elif (nivel == 2 and len(preguntas)> 5):
-        preguntas=preguntas[:5]
-    elif (nivel== 3 and len(preguntas)> 10):
+    if (nivel == 1 and len(preguntas)> 10):
         preguntas=preguntas[:10]
+
+    elif (nivel == 2 and len(preguntas)> 25):
+        preguntas=preguntas[:25]
+    elif (nivel== 3 and len(preguntas)> 50):
+        preguntas=preguntas[:50]
     #print("PREGUNTAS INICIO",preguntas)
     print("------------------------------------")
 
